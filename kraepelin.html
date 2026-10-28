@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tes Kraepelin — KPLAB</title>
+    <link rel="icon" type="image/png" href="assets/images/Logo.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">KPLAB</a>
+            <nav class="nav">
+                <a href="index.html">Beranda</a>
+                <a href="panduan.html">Panduan Tes</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container content">
+        <section class="card-instruction">
+            <div class="instr-head">
+                <h2>Tes Kraepelin</h2>
+                <span class="pill">Hitung berkelanjutan</span>
+            </div>
+            <div class="instr-body">
+                <h3>Pilih Mode Latihan</h3>
+                <p style="color:var(--color-text-muted); margin-bottom:20px; font-size:0.95rem;">Pilih salah satu mode
+                    preset atau kustomisasi sendiri sesuai kebutuhan.</p>
+
+                <!-- Mode Selection Grid -->
+                <div class="mode-grid" id="mode-selection">
+                    <button type="button" class="mode-card active" data-mode="standard">
+                        <div class="mode-card-icon">📋</div>
+                        <div class="mode-card-title">Standard</div>
+                        <div class="mode-card-desc">1 menit • Tanpa batas kesalahan</div>
+                    </button>
+                    <button type="button" class="mode-card" data-mode="sprint">
+                        <div class="mode-card-icon">⚡</div>
+                        <div class="mode-card-title">Sprint</div>
+                        <div class="mode-card-desc">1 menit • Cek kecepatan & akurasi</div>
+                    </button>
+                    <button type="button" class="mode-card" data-mode="endurance">
+                        <div class="mode-card-icon">🏃</div>
+                        <div class="mode-card-title">Endurance</div>
+                        <div class="mode-card-desc">30 menit • Latih ketahanan kerja</div>
+                    </button>
+                    <button type="button" class="mode-card" data-mode="target">
+                        <div class="mode-card-icon">🎯</div>
+                        <div class="mode-card-title">Target Errors</div>
+                        <div class="mode-card-desc">1 menit • Berhenti jika salah 5x</div>
+                    </button>
+                </div>
+                <input type="hidden" id="cfg-mode" value="standard" />
+
+                <!-- Custom Mode Toggle -->
+                <div class="custom-toggle" style="margin-top:20px; text-align:center;">
+                    <button type="button" class="btn btn-secondary" id="toggle-custom">
+                        <span id="custom-btn-text">Custom</span>
+                    </button>
+                </div>
+
+                <!-- Custom Panel (hidden by default) -->
+                <div id="custom-panel" class="custom-panel hidden">
+                    <div class="custom-panel-header">
+                        <h4>Pengaturan Kustom</h4>
+                        <button type="button" class="btn-close" id="close-custom">&times;</button>
+                    </div>
+                    <div class="custom-panel-body">
+                        <div class="custom-field">
+                            <label class="cfg-label">Waktu Latihan (menit)</label>
+                            <input id="custom-time-input" class="cfg-time-custom" type="number" min="1" max="240"
+                                placeholder="Misal: 5" />
+                        </div>
+                        <div class="custom-field">
+                            <label class="cfg-label">Batas Salah (0 = tak terbatas)</label>
+                            <input id="custom-errors-input" class="cfg-time-custom" type="number" min="0" max="99"
+                                placeholder="Misal: 3" />
+                        </div>
+                        <div class="custom-field">
+                            <label class="cfg-label">Metronom BPM (opsional)</label>
+                            <input id="custom-bpm-input" class="cfg-time-custom" type="number" min="0" max="300"
+                                placeholder="0" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preferensi Tes -->
+                <div class="pref-section">
+                    <h4>Preferensi Tes</h4>
+                    <p style="color:var(--color-text-muted); margin-bottom:16px; font-size:0.9rem;">Sesuaikan tampilan
+                        dan pengalaman latihan sesuai kebutuhanmu.</p>
+
+                    <div class="pref-item">
+                        <div class="pref-info">
+                            <div class="pref-icon" aria-hidden="true">+</div>
+                            <div class="pref-text">
+                                <h5>Tanda Tambah (+)</h5>
+                                <p>Tampilkan tanda tambah di antara angka pada soal.</p>
+                            </div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="pref-show-plus" checked />
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="pref-item">
+                        <div class="pref-info">
+                            <div class="pref-icon" aria-hidden="true">↔</div>
+                            <div class="pref-text">
+                                <h5>Preview Angka</h5>
+                                <p>Tampilkan angka sebelum dan sesudah pasangan aktif.</p>
+                            </div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="pref-show-preview" checked />
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="pref-item">
+                        <div class="pref-info">
+                            <div class="pref-icon" aria-hidden="true">↕</div>
+                            <div class="pref-text">
+                                <h5>Soal Vertikal</h5>
+                                <p>Tampilkan soal secara vertikal (angka di atas, jawaban di bawah).</p>
+                            </div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="pref-vertical" />
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="pref-item">
+                        <div class="pref-info">
+                            <div class="pref-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                    height="24" viewBox="0 0 24 24" fill="currentColor"
+                                    style="color:var(--coral);">
+                                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4.03v8.06A4.5 4.5 0 0 0 16.5 12z" />
+                                </svg></div>
+                            <div class="pref-text">
+                                <h5>Efek Suara</h5>
+                                <p>Aktifkan suara untuk interaksi selama tes.</p>
+                            </div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="pref-sound" />
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="instr-actions">
+                    <button type="button" class="btn btn-primary" id="start-btn">Mulai Tes</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section class="def">
+        <div class="section-head">
+            <h2>Memahami Perbedaan Tes</h2>
+        </div>
+        <div class="def-grid">
+            <div class="def-item">
+                <div class="def-icon icon-coral">K</div>
+                <h4>Tes Kraepelin</h4>
+                <p>Tes hitung berkelanjutan yang umumnya menggunakan penjumlahan angka berdekatan dalam kolom,
+                    dengan aturan arah pengerjaan dan pergantian kolom tertentu. Digunakan untuk mengamati performa
+                    seperti kecepatan, ketelitian, konsistensi, dan ketahanan kerja.</p>
+            </div>
+            <div class="def-item">
+                <div class="def-icon icon-mint">P</div>
+                <h4>Tes Pauli</h4>
+                <p>Tes penjumlahan berkelanjutan yang format lembar kerja dan prosedur pengerjaannya dapat berbeda.
+                    Juga digunakan untuk mengamati aspek performa seperti kecepatan, ketelitian, konsistensi, dan
+                    ketahanan kerja.</p>
+            </div>
+        </div>
+        <div class="disclaimer-box">
+            <div class="disclaimer-icon">💡</div>
+            <p class="disclaimer">Website ini merupakan sarana latihan, bukan alat diagnosis psikologi atau penentu
+                kelayakan kerja.</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 KPLAB — Sarana latihan estimasi keterampilan hitung sederhana.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/test-engine.js"></script>
+    <script src="assets/js/audio.js"></script>
+    <script src="assets/js/results.js"></script>
+    <script>
+        window.__TEST_TYPE = 'kraepelin';
+    </script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

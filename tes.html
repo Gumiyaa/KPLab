@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesi Tes — KPLAB</title>
+    <link rel="icon" type="image/png" href="assets/images/Logo.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">KPLAB</a>
+            <div id="test-info" class="test-info">Sesi Tes</div>
+        </div>
+    </header>
+
+    <main class="container content test-content">
+        <div class="card test-card">
+            <div class="test-bar">
+                <div class="timer"><span id="timer-display">00:00</span></div>
+                <div class="streak-badge" id="streak-badge">0x</div>
+                <div class="progress">
+                    <div id="progress-bar" class="progress-fill"></div>
+                </div>
+                <div class="stats">
+                    <span id="stat-done">0</span> soal &nbsp;|&nbsp;
+                    <span class="stat-c" id="stat-correct">0</span> benar &nbsp;|&nbsp;
+                    <span class="stat-w" id="stat-wrong">0</span> salah
+                </div>
+                <button type="button" class="btn btn-ghost btn-sm" id="end-btn">Akhiri</button>
+            </div>
+
+            <div id="question-panel" class="question-panel">
+                <div id="question-list" class="question-list"></div>
+            </div>
+
+            <div class="test-footer">
+
+            </div>
+
+            <section class="def">
+                <div class="section-head">
+                    <h2>Memahami Perbedaan Tes</h2>
+                </div>
+                <div class="def-grid">
+                    <div class="def-item">
+                        <div class="def-icon icon-coral">K</div>
+                        <h4>Tes Kraepelin</h4>
+                        <p>Tes hitung berkelanjutan yang umumnya menggunakan penjumlahan angka berdekatan dalam kolom,
+                            dengan aturan arah pengerjaan dan pergantian kolom tertentu. Digunakan untuk mengamati performa
+                            seperti kecepatan, ketelitian, konsistensi, dan ketahanan kerja.</p>
+                    </div>
+                    <div class="def-item">
+                        <div class="def-icon icon-mint">P</div>
+                        <h4>Tes Pauli</h4>
+                        <p>Tes penjumlahan berkelanjutan yang format lembar kerja dan prosedur pengerjaannya dapat berbeda.
+                            Juga digunakan untuk mengamati aspek performa seperti kecepatan, ketelitian, konsistensi, dan
+                            ketahanan kerja.</p>
+                    </div>
+                </div>
+                <div class="disclaimer-box">
+                    <div class="disclaimer-icon">💡</div>
+                    <p class="disclaimer">Website ini merupakan sarana latihan, bukan alat diagnosis psikologi atau penentu
+                        kelayakan kerja.</p>
+                </div>
+            </section>
+            <div class="modal-overlay" id="confirm-modal-box" role="dialog" aria-modal="true"
+                aria-labelledby="confirm-modal-title" aria-describedby="confirm-modal-desc">
+                <div class="modal-container" role="document">
+                    <div class="modal-header">
+                        <div class="modal-icon">✓</div>
+                        <h2 class="modal-title" id="confirm-modal-title">Selesaikan Tes?</h2>
+                    </div>
+                    <div class="modal-body">
+                        <p class="modal-description" id="confirm-modal-desc">Kamu yakin ingin mengakhiri tes Kraepelin
+                            dan melihat hasilnya? Pastikan kamu sudah siap karena setelah tes selesai, kamu akan
+                            diarahkan ke halaman hasil.</p>
+                        <div class="modal-info">Progres dan jawaban yang sudah tersimpan akan tetap dipertahankan.</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="confirm-modal-cancel">Kembali ke
+                            Tes</button>
+                        <button type="button" class="btn btn-primary" id="confirm-modal-ok">Ya, Selesaikan Tes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/test-engine.js"></script>
+    <script src="assets/js/audio.js"></script>
+    <script src="assets/js/results.js"></script>
+    <script>
+        // Get type from URL or fallback
+        var urlParams = new URLSearchParams(window.location.search);
+        window.__TEST_TYPE = urlParams.get('type') || 'kraepelin';
+        window.__TEST_DURATION = parseInt(urlParams.get('duration')) || 60;
+        window.__SHOW_PLUS = urlParams.get('plus') !== '0';
+        window.__MAX_ERRORS = parseInt(urlParams.get('maxErrors')) || 0;
+        window.__BPM = parseInt(urlParams.get('bpm')) || 0;
+        window.__MODE = urlParams.get('mode') || 'standard';
+    </script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

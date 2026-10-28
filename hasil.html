@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Latihan — KPLAB</title>
+    <link rel="icon" type="image/png" href="assets/images/Logo.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">KPLAB</a>
+            <nav class="nav">
+                <a href="index.html">Beranda</a>
+                <a href="panduan.html">Panduan Tes</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container content">
+        <h1 class="result-title">Hasil Latihan Kamu</h1>
+
+        <div id="result-empty" class="empty-state hidden">
+            <h2>Belum ada data hasil</h2>
+            <p>Selesaikan latihan terlebih dahulu untuk melihat statistik performa kamu di sini.</p>
+            <div class="empty-actions">
+                <a class="btn btn-primary" href="index.html">Kembali ke Beranda</a>
+            </div>
+        </div>
+
+        <div id="result-data" class="result">
+            <div class="result-meta">
+                <span class="pill" id="r-type">Tes Latihan</span>
+                <span class="r-duration">Waktu: <strong id="r-duration">0</strong></span>
+            </div>
+
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="r-total">0</div>
+                    <div class="stat-label">Total Soal</div>
+                </div>
+                <div class="stat-card stat-correct">
+                    <div class="stat-value" id="r-correct">0</div>
+                    <div class="stat-label">Benar</div>
+                </div>
+                <div class="stat-card stat-wrong">
+                    <div class="stat-value" id="r-wrong">0</div>
+                    <div class="stat-label">Salah</div>
+                </div>
+                <div class="stat-card stat-unanswered">
+                    <div class="stat-value" id="r-unanswered">0</div>
+                    <div class="stat-label">Terlewati</div>
+                </div>
+                <div class="stat-card stat-acc">
+                    <div class="stat-value" id="r-accuracy">0%</div>
+                    <div class="stat-label">Ketepatan</div>
+                </div>
+                <div class="stat-card stat-speed">
+                    <div class="stat-value" id="r-speed">0</div>
+                    <div class="stat-label">Soal/Menit</div>
+                </div>
+                <div class="stat-card stat-streak">
+                    <div class="stat-value" id="r-streak">0</div>
+                    <div class="stat-label">Lari Terpanjang</div>
+                </div>
+            </div>
+
+            <div class="summary">
+                <h3>Ringkasan Performa</h3>
+                <p id="r-summary"></p>
+            </div>
+
+            <div class="chart-container">
+                <h3>Grafik Ketelitian</h3>
+                <canvas id="performanceChart"></canvas>
+            </div>
+
+            <div class="result-actions">
+                <button type="button" class="btn btn-primary" id="retry-btn">Ulangi Latihan</button>
+                <a class="btn btn-secondary" href="index.html">Ke Beranda</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 KPLAB — Sarana latihan estimasi keterampilan hitung sederhana.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/results.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Results.render();
+        });
+    </script>
+</body>
+
+</html>
