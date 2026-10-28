@@ -11,5 +11,5 @@
 * **The Result:** Dari yang tadinya trauma ngeliat deretan angka koran, sekarang latihan malah seru kayak main *game* 🎮✨.
 
 <p align="center">
-  <img src="https://media.giphy.com/media/13Hgw8hS2aiWZ2/giphy.gif" width="280" alt="happy coding">
+  <img src="https://media1.tenor.com/m/DSyGaAVLSjwAAAAd/bigmo.gif" width="280" alt="happy coding">
 </p>
